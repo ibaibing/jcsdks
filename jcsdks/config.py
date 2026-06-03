@@ -45,6 +45,7 @@ def get_sdk_paths() -> list:
     Returns:
         list: List of Path objects to SDK directories
     """
+    import re
     sdk_root = get_sdk_root()
     if not sdk_root:
         return []
@@ -53,9 +54,9 @@ def get_sdk_paths() -> list:
     sdk_paths = []
     
     try:
-        # Look for directories matching jcXXX_kit pattern
+        # Look for directories matching jcXXX_kit pattern (starts with jc followed by a digit)
         for item in sdk_root_path.iterdir():
-            if item.is_dir() and ("jc" in item.name.lower() or "java" in item.name.lower()):
+            if item.is_dir() and re.match(r'^jc\d', item.name, re.IGNORECASE):
                 sdk_paths.append(item)
         return sdk_paths
     except Exception:
