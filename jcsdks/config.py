@@ -56,7 +56,7 @@ def get_sdk_paths() -> list:
     try:
         # Look for directories matching jcXXX_kit pattern (starts with jc followed by a digit)
         for item in sdk_root_path.iterdir():
-            if item.is_dir() and re.match(r'^jc\d', item.name, re.IGNORECASE):
+            if item.is_dir() and re.match(r'^jc\d.*_kit$', item.name, re.IGNORECASE):
                 sdk_paths.append(item)
         return sdk_paths
     except Exception:

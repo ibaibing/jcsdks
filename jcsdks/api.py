@@ -65,11 +65,14 @@ def get_sdk_resource(sdk_name: str, filename: str) -> str:
         filename: Relative path to the resource file
         
     Returns:
-        str: Absolute path to the resource file if it exists, empty string otherwise
+        str: Absolute path to the resource file if it exists
+        
+    Raises:
+        FileNotFoundError: If the resource file is not found
     """
     sdk_root = get_sdk_root()
     if not sdk_root:
-        return ""
+        raise FileNotFoundError(f"JAVACARD_SDK_ROOT not set")
     
     sdk_path = Path(sdk_root) / sdk_name
     resource_path = sdk_path / filename
@@ -77,7 +80,7 @@ def get_sdk_resource(sdk_name: str, filename: str) -> str:
     if resource_path.exists() and resource_path.is_file():
         return str(resource_path)
     
-    return ""
+    raise FileNotFoundError(f"Resource not found: {resource_path}")
 
 def get_available_sdks() -> list:
     """
