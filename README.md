@@ -1,5 +1,38 @@
 # jcsdks - JavaCard SDK Manager
 
+**jcsdks is a library** — it manages JavaCard SDK paths and is consumed by higher-level tools like [jctool](https://github.com/ibaibing/jctool). It is not a standalone application.
+
+### Toolchain Ecosystem
+
+jcsdks lives at the **environment layer** of the toolchain:
+
+```
+┌──────────────────────────────────────────┐
+│  sctool (sc) — Unified CLI               │
+│  ├── sc ca (gpca) — Certificate mgmt     │
+│  └── sc jc (jctool) — JavaCard dev       │
+├──────────────────────────────────────────┤
+│  jcsdks (this project)  │  gpapis        │
+│  SDK path management    │  GP API path   │
+│  (library, not standalone)               │
+├──────────────────────────────────────────┤
+│  javacard-demo — teaching example         │
+└──────────────────────────────────────────┘
+```
+
+| Project | Role |
+|---------|------|
+| [sctool](https://github.com/ibaibing/sctool) | Unified CLI entry point — `sc` |
+| [gpca](https://github.com/ibaibing/gpca) | Certificate mgmt for SCP — `sc ca` |
+| [jctool](https://github.com/ibaibing/jctool) | JavaCard dev — `sc jc` (depends on this library) |
+| **jcsdks** | **JavaCard SDK path management (this library)** |
+| [gpapis](https://github.com/ibaibing/gpapis) | GP API path management (library) |
+| [javacard-demo](https://github.com/ibaibing/javacard-demo) | Teaching example for the complete toolchain |
+
+You typically do not call `python -m jcsdks` directly unless verifying SDK setup.
+Instead, jctool's `jc build`, `jc sdk`, and `jc detect` commands use jcsdks internally
+to locate SDK tools and exports.
+
 A simple tool to help JavaCard developers configure and manage their JavaCard SDKs. This project does NOT distribute any Oracle JavaCard SDK files - users must obtain SDKs directly from Oracle.
 
 ## Features
