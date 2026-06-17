@@ -40,9 +40,15 @@ setup(
         "Programming Language :: Python :: 3.11",
     ],
     python_requires=">=3.8",
+    install_requires=[
+        "sctool>=1.0.0",
+    ],
     entry_points={
         "console_scripts": [
             "jcsdks = jcsdks.cli:main",
+        ],
+        "sctool.plugins": [
+            "sdks = jcsdks.cli:register",
         ],
     },
     keywords="javacard, sdk, manager, configuration, validation",
