@@ -4,7 +4,7 @@ Command-line interface for jcsdks.
 Provides commands to validate, check, and configure JavaCard SDKs.
 
 Supports both standalone usage (`python -m jcsdks validate`) and
-sctool plugin integration (`sc sdks validate`).
+sctool plugin integration (`sc jcsdks validate`).
 """
 
 import sys
@@ -189,10 +189,10 @@ def dispatch(args) -> int:
 
 
 def register() -> None:
-    """Register this module with sctool as the 'sdks' plugin."""
+    """Register this module with sctool as the 'jcsdks' plugin."""
     from sctool.plugin.registry import register_app
 
-    register_app("sdks", dispatch)
+    register_app("jcsdks", dispatch)
 
 
 if __name__ == "__main__":

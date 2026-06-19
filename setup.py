@@ -48,7 +48,7 @@ setup(
             "jcsdks = jcsdks.cli:main",
         ],
         "sctool.plugins": [
-            "sdks = jcsdks.cli:register",
+            "jcsdks = jcsdks.cli:register",
         ],
     },
     keywords="javacard, sdk, manager, configuration, validation",
